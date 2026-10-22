@@ -1,0 +1,37 @@
+name: On-demand report (now)
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+concurrency:
+  group: on-demand
+  cancel-in-progress: false
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+      TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+    steps:
+      - uses: actions/checkout@v4
+      - id: poll
+        run: python poll.py
+      - if: steps.poll.outputs.chat != ''
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - if: steps.poll.outputs.chat != ''
+        run: pip install -r requirements.txt
+      - if: steps.poll.outputs.chat != ''
+        run: python bot.py --chat "${{ steps.poll.outputs.chat }}"
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+      - if: failure() && steps.poll.outputs.chat != ''
+        run: >
+          curl -s "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage"
+          --data-urlencode "chat_id=${{ steps.poll.outputs.chat }}"
+          --data-urlencode "text=⚠️ صار خطأ أثناء تجهيز التقرير. شيّك على تبويب Actions في GitHub."

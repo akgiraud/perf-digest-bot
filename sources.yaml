@@ -1,0 +1,116 @@
+# إعدادات البوت — عدّل المصادر والكلمات المفتاحية براحتك
+
+model: claude-sonnet-5-5
+hours_back: 26            # كم ساعة يرجع للخلف (26 بدل 24 عشان ما يفوته شي لو تأخر التشغيل)
+max_items_total: 120      # أقصى عدد مقالات يرسلها لـ Claude
+max_topics: 6             # أقصى عدد مواضيع في الملخص
+timezone_offset_hours: 3  # توقيت الرياض لعنوان الرسالة
+
+# مجالات الشغل اللي لازم تكون الفكرة مناسبة لها
+business_lines:
+  - اتصالات (باقات مفوترة، فايبر، 5G، انترنت منزلي)
+  - مسبق الدفع (شحن، باقات، استقطاب مشتركين جدد)
+  - متجر بيع الأجهزة (جوالات، أجهزة، ملحقات - تجارة إلكترونية)
+  - باقات السفر والتجوال (eSIM، رومنق)
+  - التطبيقات الرقمية (تحميل التطبيق، التفعيل، الاستخدام)
+
+# فلتر أولي بالكلمات (يطبق على المصادر اللي عليها filter: true)
+# بعده Claude يسوي الفلترة الصارمة النهائية
+keywords:
+  - ppc
+  - paid
+  - ads
+  - advertis
+  - campaign
+  - bidding
+  - budget
+  - roas
+  - cpa
+  - cpc
+  - cpm
+  - ctr
+  - cvr
+  - conversion
+  - performance
+  - optimiz
+  - a/b test
+  - experiment
+  - creative test
+  - landing page
+  - cro
+  - audience
+  - targeting
+  - retargeting
+  - lookalike
+  - first-party data
+  - attribution
+  - incrementality
+  - lift
+  - mmm
+  - marketing mix
+  - ga4
+  - tracking
+  - capi
+  - server-side
+  - performance max
+  - pmax
+  - advantage+
+  - smart bidding
+  - shopping ads
+  - merchant center
+  - catalog
+  - dynamic ads
+  - app campaign
+  - app install
+  - uac
+  - lead gen
+  - e-commerce
+  - ecommerce
+  - telecom
+  - telco
+  - mobile operator
+  - esim
+  - roaming
+  - prepaid
+  - subscription
+
+sources:
+  # مواقع متخصصة في الإعلانات المدفوعة وتحسين الأداء
+  - name: PPC Land
+    url: https://ppc.land/rss/
+  - name: Search Engine Land
+    url: https://searchengineland.com/feed
+    filter: true
+  - name: Search Engine Journal
+    url: https://www.searchenginejournal.com/feed/
+    filter: true
+  - name: Google Ads & Commerce Blog
+    url: https://blog.google/products/ads-commerce/rss/
+  - name: Simo Ahava (Tracking)
+    url: https://www.simoahava.com/index.xml
+  - name: MarTech
+    url: https://martech.org/feed/
+    filter: true
+  - name: Social Media Today
+    url: https://www.socialmediatoday.com/feeds/news/
+    filter: true
+  - name: AdExchanger
+    url: https://www.adexchanger.com/feed/
+    filter: true
+  - name: Digiday
+    url: https://digiday.com/feed/
+    filter: true
+
+  # نقاشات الممارسين على Reddit (أعلى المواضيع خلال اليوم)
+  - name: Reddit r/PPC
+    url: https://www.reddit.com/r/PPC/top/.rss?t=day
+    filter: true
+  - name: Reddit r/FacebookAds
+    url: https://www.reddit.com/r/FacebookAds/top/.rss?t=day
+    filter: true
+  - name: Reddit r/GoogleAds
+    url: https://www.reddit.com/r/googleads/top/.rss?t=day
+    filter: true
+  - name: Reddit r/ecommercemarketing
+    url: https://www.reddit.com/r/ecommercemarketing/top/.rss?t=day
+    filter: true
